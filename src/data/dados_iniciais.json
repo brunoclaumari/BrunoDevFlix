@@ -1,45 +1,45 @@
 {
   "categorias": [
     {
-      "titulo": "Front End",
-      "link": "https://www.alura.com.br/formacao-front-end",
+      "titulo": "Bandas e Músicas Legais",
+      "link": "https://www.youtube.com/watch?v=tM0Y1Ajqq7g",
       "cor": "#6BD1FF",
       "link_extra": {
-        "text": "Formação de Front End na Alura",
-        "url": "https://www.alura.com.br/cursos-online-front-end"
+        "text": "Clique para ver 'Instrumedley do Dream Theater'",
+        "url": "https://www.youtube.com/watch?v=tM0Y1Ajqq7g"
       },
       "videos": [
         {
-          "titulo": "O que faz uma desenvolvedora front-end? #HipstersPontoTube",
-          "url": "https://www.youtube.com/watch?v=ZY3-MFxVdEw"
+          "titulo": "Vejam um video meu tocando!!!Faz tempo",
+          "url": "https://www.youtube.com/watch?v=gXOwa66vpMw"
         },
         {
-          "titulo": "SEO com React",
-          "url": "https://www.youtube.com/watch?v=c8mVlakBESE"
+          "titulo": "Damage Control - John Petrucci",
+          "url": "https://www.youtube.com/watch?v=cVkSF32kK9w"
         },
         {
-          "titulo": "Componentização com VanillaJS #AluraMais",
-          "url": "https://www.youtube.com/watch?v=LatCKpcOMak"
+          "titulo": "Paulo Schroeber - Almah Fragile Equality Revelado",
+          "url": "https://www.youtube.com/watch?v=wq4paV1q6sw"
         },
         {
-          "titulo": "Pare de chutar e aprenda a display: inline #01",
-          "url": "https://www.youtube.com/watch?v=5PS6ku8NzIE"
+          "titulo": "Continuar - Oficina G3",
+          "url": "https://www.youtube.com/watch?v=vv-zxFnlAB8"
         },
         {
-          "titulo": "Template String: Interpolando strings com JavaScript #AluraMais",
-          "url": "https://www.youtube.com/watch?v=ORI_HTXaIw0"
+          "titulo": "Te Escolhi - Oficina G3",
+          "url": "https://www.youtube.com/watch?v=wW12R-SYB7s"
         },
         {
-          "titulo": "Qual é a melhor linguagem de programação? #HipstersPontoTube",
-          "url": "https://www.youtube.com/watch?v=Uh-GNH-t89w"
+          "titulo": "Davi - Oficina G3",
+          "url": "https://www.youtube.com/watch?v=Oo83dy21cIk"
         },
         {
-          "titulo": "Novidades do Angular v9",
-          "url": "https://www.youtube.com/watch?v=34uHo7hFmG0"
+          "titulo": "Shade of My Soul - Almah",
+          "url": "https://www.youtube.com/watch?v=YOU4u2h_kes"
         },
         {
-          "titulo": "Base para aprender os frameworks",
-          "url": "https://www.youtube.com/watch?v=QzDjdlF1BQI"
+          "titulo": "Trace of Trait - Almah",
+          "url": "https://www.youtube.com/watch?v=R7ftBEq2ON8"
         }        
       ]
     },
