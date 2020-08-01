@@ -26,11 +26,15 @@
     background: var(--black);
     border-bottom: 2px solid var(--primary);
   }
+  /*
   body {
     --bodyPaddingTop: 94px;
     padding-top: var(--bodyPaddingTop);
   }
+  */
+  /*
   @media (max-width: 800px) {
+    
     .Menu {
       height: 40px;
       justify-content: center;
@@ -39,8 +43,13 @@
       --bodyPaddingTop: 40px;
       padding-top: var(--bodyPaddingTop);
     }
+       
   }
+  */ 
+
+
   
+  /*
   .ButtonLink {
     color: var(--white);
     border: 1px solid var(--white);
@@ -63,13 +72,14 @@
   
   @media (max-width: 800px) {
     a.ButtonLink {
-      position: fixed;
+      background: var(--primary);
+      border: 0;
+      border-radius: 0;
+      bottom: 0;
       left: 0;
       right: 0;
-      bottom: 0;
-      background: var(--primary);
-      border-radius: 0;
-      border: 0;
+      position: fixed;
       text-align: center;
     }
   }
+  */
