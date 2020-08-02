@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-//Item para estilizar o Banner principal
-//adicionando uma imagem no fundo
+// Item para estilizar o Banner principal
+// adicionando uma imagem no fundo
 export const BannerMainContainer = styled.section`
   height: 80vh;
   position: relative;
@@ -105,7 +105,6 @@ ContentAreaContainer.Title = styled.h2`
     text-align: center;
   }
 `;
-
 
 export const WatchButton = styled.button`
   font-family: 'Roboto', sans-serif;

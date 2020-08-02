@@ -16,11 +16,17 @@ const Button = styled.button`
     border-radius: 4px;
     text-decoration: none;
     display: inline-block;
-    transition: opacity .3s;
+    transition: opacity .3s;     
+
+    /*
+    &:hover,
+  &:focus {    
+    opacity: .5;    
+  }
+     */  
   
-  &:hover,
-  &:focus {
-    opacity: .5;
+  &:hover {    
+    opacity: .5;    
   }
   
   @media(max-width: 800px) {    

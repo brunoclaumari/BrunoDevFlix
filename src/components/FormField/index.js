@@ -1,14 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const FormFieldWrapper = styled.div`
+  position: relative; 
+  textarea {
+    min-height: 150px;
+  }
 
+  input:-webkit-autofill,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active,    
+  input:-webkit-autofill:hover { 
+    transition: all 5000s ease-in-out 0s;
+    transition-property: #53585D, #F5F5F5;
+  }
+   
+  input[type="color"] {
+    padding-left: 56px;
+  }
 `;
 
 const Label = styled.label``;
 Label.Text = styled.span`
-   color: #E5E5E5;
+  color: #E5E5E5;
   height: 57px;
   position: absolute; 
   top: 0;
@@ -22,12 +37,11 @@ Label.Text = styled.span`
   font-style: normal;
   font-weight: 300;
   
-  transition: .1s ease-in-out;
-
+  transition: .1s ease-in-out;  
 `;
 
 const MyTag = styled.input`
-  background: #53585D;
+  background-color: #53585D;
   color: #F5F5F5;
   display: block;
   width: 100%;
@@ -37,7 +51,7 @@ const MyTag = styled.input`
   outline: 0;
   border: 0;
   border-top: 4px solid transparent;
-  border-bottom: 4px solid #53585D;
+  border-bottom: 4px solid #53585D;  
   
   padding: 16px 16px;
   margin-bottom: 45px;
@@ -46,18 +60,20 @@ const MyTag = styled.input`
   border-radius: 4px;
   transition: border-color .3s;
   
+}
+  
   &:focus {
-    border-bottom-color: var(--primary);
+    border-bottom-color: var(--primary);        
   }
   &:focus:not([type='color']) + ${Label.Text} {
-    transform: scale(.6) translateY(-10px);
+    transform: scale(.6) translateY(-10px);       
   }
   ${({ value }) => {
     const hasValue = value.length > 0;
     // eslint-disable-next-line no-undef
     return hasValue && css`
         &:not([type='color']) + ${Label.Text} {
-          transform: scale(.6) translateY(-10px);
+          transform: scale(.6) translateY(-10px);        
         }
       `;
   }
