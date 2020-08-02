@@ -41,7 +41,11 @@ function CadastroCategoria() {
     // eslint-disable-next-line no-console
     console.log('alo alo w brasil');
     // aqui vai passar a url para pegar os dados
-    const URL_TOP = 'http://localhost:8080/categorias';
+    // window.location.hostname.includes('localhost')
+    const URL_TOP = window.location.hostname.includes('localhost')
+      ? 'http://localhost:8080/categorias'
+      : 'https://brunodevflix.herokuapp.com/categorias';
+
     //
     fetch(URL_TOP)
       .then(async (respostaServidor) => {
