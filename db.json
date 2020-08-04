@@ -1,16 +1,58 @@
 {
-    "categorias":[
-        {
-            "id": 1,
-            "nome":"Front End",
-            "descricao": "Uma categoria bacanudassa",
-            "cor": "#6bd1ff"
-        },
-        {
-            "id": 2,
-            "nome":"Back End",
-            "descricao": "Outra categoria bacanudassa",
-            "cor": "#6bd1ff"
-        }
-    ]
+  "categorias": [
+    {
+      "id": 1,
+      "nome": "Front End",
+      "descricao": "Uma categoria bacanudassa",
+      "cor": "#6bd1ff"
+    },
+    {
+      "id": 2,
+      "nome": "Back End",
+      "descricao": "Outra categoria bacanudassa",
+      "cor": "#6bd1ff"
+    },
+    {
+      "id": 3,
+      "nome": "",
+      "descricao": "",
+      "cor": "#000"
+    },
+    {
+      "id": 4,
+      "nome": "Calçados",
+      "descricao": "fdfdsf",
+      "cor": "#000"
+    },
+    {
+      "id": 5,
+      "nome": "",
+      "descricao": "",
+      "cor": "#000"
+    },
+    {
+      "id": 6,
+      "nome": "xz\\x",
+      "descricao": "xz\\x\\zx",
+      "cor": "#000"
+    },
+    {
+      "id": 7,
+      "nome": "xz\\x\\z",
+      "descricao": "xz\\x\\zx",
+      "cor": "#000"
+    },
+    {
+      "id": 8,
+      "nome": "xz\\xz\\",
+      "descricao": "x\\zx\\",
+      "cor": "#000"
+    },
+    {
+      "id": 9,
+      "nome": "",
+      "descricao": "",
+      "cor": "#000"
+    }
+  ]
 }

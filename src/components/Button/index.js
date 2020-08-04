@@ -3,7 +3,9 @@ import styled from 'styled-components';
 
 // configurações para qualquer Button
 const Button = styled.button`
+    
     color: var(--white);
+    text-shadow: black 0.15em 0.02em 0.4em;
     border: 1px solid var(--white);
     background: var(--background);
     box-sizing: border-box;
