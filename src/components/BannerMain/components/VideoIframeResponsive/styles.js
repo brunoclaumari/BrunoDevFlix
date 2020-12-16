@@ -19,3 +19,11 @@ export const ResponsiveIframe = styled.iframe`
   width: 100%;
   height: 100%;
 `;
+
+export const ImageTeste = styled.img` 
+
+  max-width: 100%;
+  height: auto;
+  border: 0;
+
+`;

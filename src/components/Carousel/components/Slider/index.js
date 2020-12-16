@@ -18,16 +18,18 @@ const Container = styled.ul`
     height: 30px;
     transform: initial;
     &:before {
-      font-size: 30px;
+      font-size: 30px;  
+      -webkit-tap-highlight-color: transparent;             
     }
   }
   
   .slick-prev {
-    left: 0;
+    left: 0;    
   }
   .slick-next {
-    right: 16px;
-  }
+    right: 16px;    
+  }  
+  
 `;
 
 export const SliderItem = styled.li`
@@ -41,16 +43,17 @@ export const SliderItem = styled.li`
 
 `;
 
+// eslint-disable-next-line react/prop-types
 const Slider = ({ children }) => (
-  <Container >       
+  <Container>
     <SlickSlider {...{
       dots: false,
       infinite: true,
       speed: 300,
       centerMode: false,
       variableWidth: true,
-      adaptiveHeight: true,          
-      
+      adaptiveHeight: true,
+
     }}
     >
       {children}
@@ -58,4 +61,4 @@ const Slider = ({ children }) => (
   </Container>
 );
 
-export default Slider; 
+export default Slider;

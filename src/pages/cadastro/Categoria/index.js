@@ -1,66 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-// import styled from 'styled-components';
 import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
 import Button from '../../../components/Button';
+import useForm from '../../../hooks/useForm';
 
-let ultId = 0;
-let limparPressionado = false;
-
-function useForm(valoresIniciais) {
-  const [valuesCateg, setValues] = useState(valoresIniciais);
-
-  function handlePost() {
-    // const url = '../../../../db.json';
-    const url = window.location.hostname.includes('localhost')
-      ? 'http://localhost:8080/categorias'
-      : 'https://brunodevflix.herokuapp.com/categorias';
-
-    if (!limparPressionado) {
-      // limparPressionado = false;
-      fetch(url, {
-        method: 'POST',
-        body: JSON.stringify(valuesCateg),
-        headers: {
-          'content-type': 'application/json',
-        },
-      }).then((data) => data.json())
-        .catch((erro) => console.log(erro.message))
-        .then((response) => console.log('Success:', response));
-    }
-  }
-
-  function setValue(chave, valor) {
-    setValues({
-      ...valuesCateg,
-      [chave]: valor, // nome: 'valor'
-    });
-  }
-
-  function handleChange(infosDoEvento) {
-    // const { getAttribute, value } = infosDoEvento.target;
-    setValue(
-      infosDoEvento.target.getAttribute('name'),
-      infosDoEvento.target.value,
-    );
-  }
-
-  function clearForm() {
-    limparPressionado = true;
-    setValues(valoresIniciais);
-  }
-
-  return {
-    valuesCateg,
-    handleChange,
-    clearForm,
-    handlePost,
-  };
-}
+// let ultId = 0;
+let limparPressionado = true;
 
 function CadastroCategoria() {
-  /*
+  /* r
             1º-criar a constante que vai receber o estado (sintaxe exemp. abaixo)
             --[nomeDaConstante, metodo1,metodo2]=useState('Valor desejado');
             2º-depois atribuir no 'value' o nome da const;
@@ -74,15 +23,34 @@ function CadastroCategoria() {
   // classe para atribuição de valores da categoria;
   const valoresIniciais = {
     id: 0,
-    nome: '',
-    descricao: '',
+    titulo: '',
     cor: '#000',
   };
 
+  // constante que usa valores retornados da função
   const {
-    handleChange, valuesCateg, clearForm,
-    handlePost,
+    handleChange, values, clearForm,
   } = useForm(valoresIniciais);
+
+  function handlePost() {
+    limparPressionado = false;
+    // const url = '../../../../db.json';
+    const url = window.location.hostname.includes('localhost')
+      ? 'http://localhost:8080/categorias'
+      : 'https://brunodevflix.herokuapp.com/categorias';
+
+    if (!limparPressionado && values.titulo !== '') {
+      fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(values),
+        headers: {
+          'content-type': 'application/json',
+        },
+      }).then((data) => data.json())
+        .catch((erro) => console.log(erro.message))
+        .then((response) => console.log('Success:', response));
+    }
+  }
 
   useEffect(() => {
     // eslint-disable-next-line no-console
@@ -93,100 +61,104 @@ function CadastroCategoria() {
     fetch(URL_TOP)
       .then(async (respostaServidor) => {
         const resposta = await respostaServidor.json();
-        ultId = resposta[resposta.length - 1].id;
-        valoresIniciais.id = ultId + 1;
+        /* ultId = resposta[resposta.length - 1].id;
+        valoresIniciais.id = ultId + 1; */
         setCategorias([
           ...resposta,
         ]);
       });
+    // limparPressionado = true;
   }, []);
+
+  function actLimpar() {
+    limparPressionado = true;
+    // valoresIniciais.id = listaDeCategorias[listaDeCategorias.length - 1].id + 1;
+
+    clearForm();
+  }
 
   return (
     <PageDefault>
       <h1>
         {' '}
         Cadastro de Categoria:
-        {valuesCateg.nome}
+        {values.titulo}
       </h1>
       <form onSubmit={function handleSubmit(infoDoSubmit) {
-        ultId = listaDeCategorias[listaDeCategorias.length - 1].id;
-        valuesCateg.id = ultId + 1;
-        valoresIniciais.id = valuesCateg.id + 1;
-
-        // let idExiste = false;
+        /* ultId = listaDeCategorias[listaDeCategorias.length - 1].id;
+        values.id = ultId + 1; */
+        // values.id = listaDeCategorias[listaDeCategorias.length - 1].id + 1;
         infoDoSubmit.preventDefault();
-        /* for (let i = 0; i < listaDeCategorias.length; i += 1) {
-          if (listaDeCategorias[i].id === valuesCateg.id) {
-            idExiste = true;
-            break;
-          }
-        } */
 
         if (!limparPressionado) {
-          valoresIniciais.id = valuesCateg.id + 1;
+          // valoresIniciais.id = values.id + 1;
           setCategorias([
             ...listaDeCategorias,
-            valuesCateg,
+            values,
           ]);
         } else {
-          valoresIniciais.id = valuesCateg.id;
+          // valoresIniciais.id = listaDeCategorias[listaDeCategorias.length - 1].id + 1;
           setCategorias([
             ...listaDeCategorias,
           ]);
         }
 
-        /*
-        else {
-          // valoresIniciais.id = valuesCateg.id + 1;
-          limparPressionado = true;
-          alert('Esse id já existe');
-        }
-        */
-
-        // valoresIniciais.id = valuesCateg.id + 1;
-
         clearForm();
+        // actLimpar();
         limparPressionado = false;
       }}
       >
 
         <FormField
-          tituloLabel="Nome da Categoria"
+          tituloLabel="Titulo da Categoria"
           type="text"
           tipoDeTag="input"
-          categAtributo={valuesCateg.nome}
-          campo="nome"
+          atributo={values.titulo}
+          campo="titulo"
           funcaoHandleChange={handleChange}
         />
 
+        {/*
         <FormField
           tituloLabel="Descrição da Categoria"
           type="text"
           tipoDeTag="textarea"
-          categAtributo={valuesCateg.descricao}
+          atributo={values.descricao}
           campo="descricao"
           funcaoHandleChange={handleChange}
         />
+        */}
 
         <FormField
           tituloLabel="Cor"
           type="color"
           tipoDeTag="input"
-          categAtributo={valuesCateg.cor}
+          atributo={values.cor}
           campo="cor"
           funcaoHandleChange={handleChange}
         />
         <div>
           <Button
-            name="cadastro"
+            name="enviar"
             onClick={handlePost}
-            style={{ backgroundColor: '#FFA500' }}
+            style={{
+              backgroundColor: '#FFA500',
+              marginRight: '15px',
+              width: '150px',
+              position: 'relative',
+            }}
+
           >
             Cadastrar
           </Button>
           <Button
-            onClick={clearForm}
-            style={{ backgroundColor: 'gray' }}
+            onClick={actLimpar}
+            style={{
+              backgroundColor: 'gray',
+              marginRight: '15px',
+              width: '150px',
+              position: 'relative',
+            }}
           >
             Limpar
           </Button>
@@ -204,7 +176,7 @@ function CadastroCategoria() {
         {listaDeCategorias.map((categoria) => (
           // eslint-disable-next-line react/no-array-index-key
           <li key={`${categoria.id}`}>
-            {categoria.nome}
+            {categoria.titulo}
           </li>
         ))}
       </ul>
@@ -216,6 +188,78 @@ function CadastroCategoria() {
 }
 
 export default CadastroCategoria;
+
+/*
+if (!limparPressionado) {
+            valoresIniciais.id = values.id + 1;
+            setCategorias([
+              ...listaDeCategorias,
+              values,
+            ]);
+          } else {
+            // valoresIniciais.id = values.id;
+            valoresIniciais.id = listaDeCategorias[listaDeCategorias.length - 1].id + 1;
+            setCategorias([
+              ...listaDeCategorias,
+            ]);
+          }
+
+          // clearForm();
+          actLimpar();
+          limparPressionado = false;
+*/
+
+// começa com 'use' pois é um padrão dos 'custom kooks'
+/* function useForm(valoresIniciais) {
+  const [valuesCateg, setValues] = useState(valoresIniciais);
+
+  function setValue(chave, valor) {
+    setValues({
+      ...valuesCateg,
+      [chave]: valor, // nome: 'valor'
+    });
+  }
+
+  function handleChange(infosDoEvento) {
+    setValue(
+      infosDoEvento.target.getAttribute('name'),
+      infosDoEvento.target.value,
+    );
+  }
+
+  function clearForm() {
+    limparPressionado = true;
+    setValues(valoresIniciais);
+  }
+
+  // valores que a função retorna para usar
+  return {
+    valuesCateg,
+    handleChange,
+    clearForm,
+    // handlePost,
+  };
+} */
+
+// Estava dentro do useForm e eu tirei
+/* function handlePost() {
+    // const url = '../../../../db.json';
+    const url = window.location.hostname.includes('localhost')
+      ? 'http://localhost:8080/categorias'
+      : 'https://brunodevflix.herokuapp.com/categorias';
+
+    if (!limparPressionado) {
+      fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(valuesCateg),
+        headers: {
+          'content-type': 'application/json',
+        },
+      }).then((data) => data.json())
+        .catch((erro) => console.log(erro.message))
+        .then((response) => console.log('Success:', response));
+    }
+  } */
 
 // lógica de ouro
 /*
@@ -243,73 +287,3 @@ export default CadastroCategoria;
           ]);
         }
 */
-
-/*
-if (!limparPressionado) {
-          if (!idExiste) {
-            valoresIniciais.id = valuesCateg.id + 1;
-            setCategorias([
-              ...listaDeCategorias,
-              valuesCateg,
-            ]);
-          } else {
-            valoresIniciais.id = valuesCateg.id + 1;
-            setCategorias([
-              ...listaDeCategorias,
-            ]);
-          }
-        } else {
-          valoresIniciais.id = ultId + 1;
-        }
-*/
-
-/* setTimeout(() => {
-      setCategorias([
-        ...listaDeCategorias,
-        {
-          id: 1,
-          nome: 'Front End',
-          descricao: 'Uma categoria bacanudassa',
-          cor: '#6bd1ff',
-        },
-        {
-          id: 2,
-          nome: 'Back End',
-          descricao: 'Outra categoria bacanudassa',
-          cor: '#6bd1ff',
-        },
-      ]);
-    }, 4 * 1000); */
-
-/*
-      const [items, setItems] = useState(listaDeCategorias);
-
-    // fetch('../../../../db.json')
-    useEffect(() => {
-      fetch('../../../../db.json')
-        .then(res => res.json())
-        .then(
-          (result) => {
-            setIsLoaded(true);
-            setItems(result.items);
-          }
-      )
-  }, [])
-
-     */
-
-// método que estava dentro do form
-/*
-     {function handleSubmit(infoDoSubmit) {
-        // valuesCateg.id += 1;
-        valuesCateg.id = listaDeCategorias.length + 1;
-        valoresIniciais.id = valuesCateg.id + 1;
-        infoDoSubmit.preventDefault();
-        setCategorias([
-          ...listaDeCategorias,
-          valuesCateg,
-        ]);
-
-        clearForm();
-      }}
-     */

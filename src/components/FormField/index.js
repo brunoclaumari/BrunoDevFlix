@@ -85,12 +85,14 @@ function FormField({
   tituloLabel,
   type,
   tipoDeTag,
-  categAtributo,
+  atributo,
   campo,
   funcaoHandleChange,
+  suggestions,
 }) {
   const fieldId = `id_${campo}`;
   const tag = tipoDeTag;
+  const hasSuggestions = Boolean(suggestions.length);
 
   return (
     <FormFieldWrapper>
@@ -101,14 +103,28 @@ function FormField({
           as={tag}
           id={fieldId}
           type={type}
-          value={categAtributo}
+          value={atributo}
           name={campo}
           onChange={funcaoHandleChange}
+          list={`suggestionFor_${fieldId}`}
+          autoComplete={hasSuggestions ? 'off' : 'on'}
+          required
         />
         <Label.Text>
           {tituloLabel}
           :
         </Label.Text>
+        {hasSuggestions && (
+        <datalist id={`suggestionFor_${fieldId}`}>
+          {
+            suggestions.map((suggest) => (
+              <option value={suggest} key={`suggestionFor_${fieldId}option${suggest}`}>
+                {suggest}
+              </option>
+            ))
+          }
+        </datalist>
+        )}
       </Label>
     </FormFieldWrapper>
   );
@@ -116,8 +132,9 @@ function FormField({
 
 FormField.defaultProps = {
   type: 'text',
-  categAtributo: '',
+  atributo: '',
   tipoDeTag: 'input',
+  suggestions: [],
   // funcaoHandleChange: () => { },
 };
 
@@ -125,9 +142,10 @@ FormField.propTypes = {
   tituloLabel: PropTypes.string.isRequired,
   type: PropTypes.string,
   tipoDeTag: PropTypes.string,
-  categAtributo: PropTypes.string,
+  atributo: PropTypes.string,
   campo: PropTypes.string.isRequired,
   funcaoHandleChange: PropTypes.func.isRequired,
+  suggestions: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default FormField;
